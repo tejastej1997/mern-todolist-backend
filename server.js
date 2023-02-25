@@ -4,6 +4,7 @@ let mongoose = require('mongoose')
 let taskSchema = require('./model')
 let mongopassword = process.env.Mongopassword;
 let mongousername = process.env.Mongousername;
+const port = process.env.port || 4000
 let cors = require('cors')
 let app = express()
 app.use(express.json())
@@ -43,8 +44,6 @@ app.post('/addtask', async (req, res) => {
 })
 
 
-
-
 app.get('/gettask', async (req, res) => {
     try {
         return res.json(await taskSchema.find())
@@ -72,6 +71,6 @@ app.delete('/delete/:id', async (req, res) => {
 
 
 
-app.listen(4000, () => {
+app.listen(port, () => {
     console.log("Port 4000 running");
 });
